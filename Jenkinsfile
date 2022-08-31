@@ -1,3 +1,4 @@
+def gitTag = null
 pipeline {
     agent any
     stages {
@@ -13,7 +14,10 @@ pipeline {
         }
         stage('Stage TAG_NAME') {
             steps {
-                echo env.TAG_NAME
+                script {
+                    gitTag = sh(returnStdout: true, script: 'git tag --points-at')
+                }
+                echo gitTag
             }
         }
     }
