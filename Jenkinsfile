@@ -13,11 +13,13 @@ pipeline {
             }
         }
         stage('Stage TAG_NAME') {
-            steps {
-                script {
-                    gitTag = sh(returnStdout: true, script: 'git tag --points-at')
+            when {
+                expression {
+                    TAG_NAME != null
                 }
-                echo gitTag
+            }
+            steps {
+                echo 'TAG_NAME'
             }
         }
     }
