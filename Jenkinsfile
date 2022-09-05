@@ -29,14 +29,3 @@ pipeline {
         }
     }
 }
-
-def addTagNameCheck() {
-    addPhase(name:'Check Tag Name 3', priority:900)
-
-    /* groovylint-disable-next-line SpaceAfterClosingBrace */
-    if (env.TAG_NAME != null) {
-        echo "Tag Name: ${TAG_NAME}"
-    }
-}
-
-addTagNameCheck()
