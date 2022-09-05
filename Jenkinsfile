@@ -9,6 +9,7 @@ pipeline {
         stage('Stage 2') {
             steps {
                 echo 'Hello world! from stage 2'
+                echo env.TAG_NAME
             }
         }
         stage('Stage TAG_NAME') {
