@@ -15,9 +15,15 @@ pipeline {
         stage('Stage TAG_NAME') {
             when {
                 expression {
-                    TAG_NAME != null
+                    "${env.TAG_NAME}" != null
                 }
             }
+            steps {
+                echo "${env.TAG_NAME}"
+            }
+        }
+        stage('Check for Tag') {
+            when { tag 'tag-*' }
             steps {
                 echo 'TAG_NAME'
             }
