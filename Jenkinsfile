@@ -21,7 +21,7 @@ pipeline {
                 echo "${env.TAG_NAME}"
             }
         }
-        stage('Check for Tag') {
+        stage('Check for Tag 1') {
             when { tag 'tag-*' }
             steps {
                 echo env.TAG_NAME
@@ -29,3 +29,14 @@ pipeline {
         }
     }
 }
+
+def addTagNameCheck() {
+    addPhase(name:'Check Tag Name 3', priority:900)
+
+    /* groovylint-disable-next-line SpaceAfterClosingBrace */
+    if (env.TAG_NAME != null) {
+        echo "Tag Name: ${TAG_NAME}"
+    }
+}
+
+addTagNameCheck()
