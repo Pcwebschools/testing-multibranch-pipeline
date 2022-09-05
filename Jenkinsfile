@@ -1,4 +1,3 @@
-def gitTag = null
 pipeline {
     agent any
     stages {
@@ -15,11 +14,17 @@ pipeline {
         stage('Stage TAG_NAME') {
             when {
                 expression {
-                    TAG_NAME != null
+                    "${env.TAG_NAME}" != null
                 }
             }
             steps {
-                echo 'TAG_NAME'
+                echo "${env.TAG_NAME}"
+            }
+        }
+        stage('Check for Tag') {
+            when { tag 'tag-*' }
+            steps {
+                echo env.TAG_NAME
             }
         }
     }
