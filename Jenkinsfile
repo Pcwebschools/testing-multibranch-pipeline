@@ -1,4 +1,3 @@
-def gitTag = null
 pipeline {
     agent any
     stages {
@@ -20,6 +19,12 @@ pipeline {
             }
             steps {
                 echo "${env.TAG_NAME}"
+            }
+        }
+        tage('Check for Tag') {
+            when { tag 'tag-*' }
+            steps {
+                en.TAG_NAME
             }
         }
     }
