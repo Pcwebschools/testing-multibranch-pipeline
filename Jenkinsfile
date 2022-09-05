@@ -24,7 +24,7 @@ pipeline {
         stage('Check for Tag') {
             when { tag 'tag-*' }
             steps {
-                env.TAG_NAME
+                echo env.TAG_NAME
             }
         }
     }
